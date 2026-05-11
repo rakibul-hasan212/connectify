@@ -1,8 +1,8 @@
 
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:connectify/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../../core/routes/app_routes.dart';
 
 class SplashScreen extends StatelessWidget{
   @override

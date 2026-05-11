@@ -1,10 +1,10 @@
 import 'package:connectify/core/theme/app_theme.dart';
-import 'package:connectify/routes/app_routes.dart';
-import 'package:connectify/routes/app_screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'core/routes/app_routes.dart';
+import 'core/routes/app_screens.dart';
 import 'firebase_options.dart';
 
 void main() async{
