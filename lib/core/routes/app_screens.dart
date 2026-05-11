@@ -1,7 +1,7 @@
 
 import 'package:connectify/core/routes/app_routes.dart';
-import 'package:connectify/features/auth/view/login_screen.dart';
-import 'package:connectify/features/auth/view/signup_screen.dart';
+import 'package:connectify/features/auth/view/login/login_screen.dart';
+import 'package:connectify/features/auth/view/signup/signup_screen.dart';
 import 'package:connectify/features/splash/view/splash_screen.dart';
 
 import 'package:get/get.dart';
