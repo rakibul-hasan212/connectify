@@ -1,4 +1,5 @@
 
+import 'package:connectify/core/routes/app_routes.dart';
 import 'package:connectify/core/widgets/button/app_button.dart';
 import 'package:connectify/core/widgets/textFormFeild/app_text_form_feild.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,7 @@ class LoginForm extends StatelessWidget{
     return Form(
         key: formKey,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text("Email"),
             AppTextFormFeild(
@@ -76,6 +78,7 @@ class LoginForm extends StatelessWidget{
                 InkWell(
                     onTap: (){
                       //Later update
+                      Get.toNamed(AppRoutes.Signup);
                       Get.snackbar("SignUp", "Action Perform");
                     },
                     child: const Text("SignUp"))

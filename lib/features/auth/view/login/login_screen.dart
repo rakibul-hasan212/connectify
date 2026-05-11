@@ -1,6 +1,5 @@
 
-import 'package:connectify/core/widgets/button/app_button.dart';
-import 'package:connectify/core/widgets/textFormFeild/app_text_form_feild.dart';
+import 'package:connectify/features/auth/view/login/form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -22,7 +21,6 @@ class LoginScreen extends StatelessWidget{
             padding: EdgeInsets.all(20.w),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
                   child: CircleAvatar(
@@ -34,6 +32,7 @@ class LoginScreen extends StatelessWidget{
                 Center(child: Text("Welcome to Login Screen")),
                 SizedBox(height: 20.h,),
                 //loginForm
+                LoginForm(),
                 SizedBox(height: 20.h,),
                 const Center(child: Text("OR")),
                 SizedBox(height: 10.h,),
