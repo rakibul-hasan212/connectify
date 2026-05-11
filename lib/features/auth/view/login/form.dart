@@ -17,7 +17,7 @@ class LoginForm extends StatelessWidget{
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("Email"),
+            const Text("Email"),
             AppTextFormFeild(
               controller: emailController,
               hintText: "Enter your mail hare",
@@ -66,7 +66,7 @@ class LoginForm extends StatelessWidget{
             AppButton(
                 title: "Login",
                 onTap: (){
-                  //Later
+                  Get.toNamed(AppRoutes.Home);
                 }
             ),
             SizedBox(height: 20.h,),
