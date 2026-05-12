@@ -1,4 +1,5 @@
 
+import 'package:connectify/core/Utils/validation.dart';
 import 'package:connectify/core/routes/app_routes.dart';
 import 'package:connectify/core/widgets/button/app_button.dart';
 import 'package:connectify/core/widgets/textFormFeild/app_text_form_feild.dart';
@@ -25,11 +26,12 @@ class LoginForm extends StatelessWidget{
               hintText: "Enter your mail hare",
               keyboardType: TextInputType.emailAddress,
               prefixIcon: const Icon(Icons.email_outlined),
+              validator: AppValidations.email,
             ),
             SizedBox(height: 20.h,),
             const Text("Password:"),
             Obx( () {
-                return AppTextFormFeild(
+              return AppTextFormFeild(
                   controller: passwordController,
                   hintText: "Enter your password hare",
                   keyboardType: TextInputType.visiblePassword,
@@ -45,8 +47,9 @@ class LoginForm extends StatelessWidget{
                               : Icons.visibility_outlined
                       )
                   ),
-                );
-              }
+                  validator: AppValidations.password
+              );
+            }
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
@@ -79,23 +82,11 @@ class LoginForm extends StatelessWidget{
             AppButton(
                 title: "Login",
                 onTap: (){
-                  Get.toNamed(AppRoutes.Home);
+                  if(formKey.currentState!.validate()){
+                    Get.snackbar("Login", "Login Successful..");
+                    Get.toNamed(AppRoutes.Home);
+                  }
                 }
-            ),
-            SizedBox(height: 20.h,),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Text("Don't have any account?"),
-                SizedBox(width: 2.w,),
-                InkWell(
-                    onTap: (){
-                      //Later update
-                      Get.toNamed(AppRoutes.Signup);
-                      Get.snackbar("SignUp", "Action Perform");
-                    },
-                    child: const Text("SignUp"))
-              ],
             ),
           ],
         )

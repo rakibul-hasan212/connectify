@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class AppTextFormFeild extends StatelessWidget {
 
+  final String? Function(String?)? validator;
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
@@ -17,7 +18,8 @@ class AppTextFormFeild extends StatelessWidget {
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
     this.prefixIcon,
-    this.suffixIcon
+    this.suffixIcon,
+    this.validator
   });
 
   @override
@@ -34,6 +36,7 @@ class AppTextFormFeild extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
       ),
+      validator: validator,
     );
   }
 }
