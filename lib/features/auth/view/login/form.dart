@@ -3,13 +3,13 @@ import 'package:connectify/core/Utils/validation.dart';
 import 'package:connectify/core/routes/app_routes.dart';
 import 'package:connectify/core/widgets/button/app_button.dart';
 import 'package:connectify/core/widgets/textFormFeild/app_text_form_feild.dart';
-import 'package:connectify/features/auth/controller/login_controller.dart';
+import 'package:connectify/features/auth/controller/auth_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class LoginForm extends StatelessWidget{
-  final LoginController controller = Get.put(LoginController());
+  final AuthController controller = Get.put(AuthController());
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
