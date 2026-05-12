@@ -28,7 +28,7 @@ class AppScreens {
     ),
     GetPage(
         name: AppRoutes.Chat,
-        page: () => ChatScreen(user: '',)
+        page: () => ChatScreen()
     )
 
   ];

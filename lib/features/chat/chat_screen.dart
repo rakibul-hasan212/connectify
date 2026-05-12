@@ -3,11 +3,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class ChatScreen extends StatelessWidget{
-  final String user;
-  ChatScreen({
-    super.key,
-    required this.user
-  });
+  final user = Get.arguments;
+  ChatScreen({super.key,});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

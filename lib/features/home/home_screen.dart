@@ -59,7 +59,7 @@ class HomeScreen extends StatelessWidget{
             final data = activeFrnd[index];
             return InkWell(
               onTap: (){
-                Get.to(ChatScreen(user: data));
+                Get.toNamed(AppRoutes.Chat, arguments: data);
               },
               child: ListTile(
                   leading: CircleAvatar(
