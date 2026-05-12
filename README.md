@@ -11,4 +11,16 @@ Basically all features will be added which is most uses as Real time Chatting Ap
 * Route setup
 * Theme setup
 
+---
+
+## ✅ CURRENT STATUS
+Completed:
+* Firebase setup
+* Auth UI
+* Reusable widgets
+* Routing
+* GetX reactive state
+* Password toggle
+* Reusable validators
+* Form validation system
 
