@@ -45,7 +45,7 @@ class HomeScreen extends StatelessWidget{
             child: IconButton(
                 onPressed: (){
                   //Later update
-                  Get.toNamed(AppRoutes.Login);
+                  Get.back();
                 },
                 icon: const Icon(Icons.logout)
             ),

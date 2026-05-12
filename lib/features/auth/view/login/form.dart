@@ -2,11 +2,13 @@
 import 'package:connectify/core/routes/app_routes.dart';
 import 'package:connectify/core/widgets/button/app_button.dart';
 import 'package:connectify/core/widgets/textFormFeild/app_text_form_feild.dart';
+import 'package:connectify/features/auth/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 class LoginForm extends StatelessWidget{
+  final LoginController controller = Get.put(LoginController());
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
@@ -26,28 +28,39 @@ class LoginForm extends StatelessWidget{
             ),
             SizedBox(height: 20.h,),
             const Text("Password:"),
-            AppTextFormFeild(
-              controller: passwordController,
-              hintText: "Enter your password hare",
-              keyboardType: TextInputType.visiblePassword,
-              obscureText: true,
-              prefixIcon: const Icon(Icons.lock_outlined),
-              suffixIcon: IconButton(
-                  onPressed: (){
-                    //Later
-                  },
-                  icon: const Icon(Icons.visibility_outlined)),
+            Obx( () {
+                return AppTextFormFeild(
+                  controller: passwordController,
+                  hintText: "Enter your password hare",
+                  keyboardType: TextInputType.visiblePassword,
+                  obscureText: controller.isPasswordHidden.value,
+                  prefixIcon: const Icon(Icons.lock_outlined),
+                  suffixIcon: IconButton(
+                      onPressed: (){
+                        controller.togglePassword();
+                      },
+                      icon:  Icon(
+                          controller.isPasswordHidden.value
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined
+                      )
+                  ),
+                );
+              }
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Row(
                   children: [
-                    Checkbox(
-                        value: false,
-                        onChanged: (value){
-                          //Later
-                        }
+                    Obx(() {
+                        return Checkbox(
+                            value: controller.isChecked.value,
+                            onChanged: (value){
+                              controller.Checked();
+                            }
+                        );
+                      }
                     ),
                     const Text("Remember Me")
                   ],
