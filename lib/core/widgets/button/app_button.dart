@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppButton extends StatelessWidget{
-  final String title;
+  final Widget child;
   final VoidCallback onTap;
   const AppButton({
     super.key,
-    required this.title,
+    required this.child,
     required this.onTap,
   });
   @override
@@ -17,9 +17,7 @@ class AppButton extends StatelessWidget{
       height: 55.h,
       child: ElevatedButton( 
           onPressed: onTap,  
-          child: Text(
-              title,
-          )
+          child: child
       ),
     );
   }

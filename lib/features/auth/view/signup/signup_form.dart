@@ -7,13 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class SignupForm extends StatelessWidget{
+class SignupForm extends StatelessWidget {
   final AuthController controller = Get.put(AuthController());
   TextEditingController usernameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPassController = TextEditingController();
   GlobalKey<FormState> formKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -28,7 +29,9 @@ class SignupForm extends StatelessWidget{
             hintText: "Enter your username here",
             prefixIcon: const Icon(Icons.person_outline),
           ),
-          SizedBox(height: 16.h,),
+          SizedBox(
+            height: 16.h,
+          ),
           const Text("Email: "),
           AppTextFormFeild(
             controller: emailController,
@@ -37,9 +40,11 @@ class SignupForm extends StatelessWidget{
             prefixIcon: const Icon(Icons.email_outlined),
             validator: AppValidations.email,
           ),
-          SizedBox(height: 16.h,),
+          SizedBox(
+            height: 16.h,
+          ),
           const Text("Password: "),
-          Obx( () {
+          Obx(() {
             return AppTextFormFeild(
               controller: passwordController,
               keyboardType: TextInputType.visiblePassword,
@@ -47,21 +52,19 @@ class SignupForm extends StatelessWidget{
               obscureText: controller.isPasswordHidden.value,
               prefixIcon: const Icon(Icons.lock_outlined),
               suffixIcon: IconButton(
-                  onPressed: (){
+                  onPressed: () {
                     //Later update
                     controller.togglePassword();
                   },
-                  icon: Icon(
-                      controller.isPasswordHidden.value
-                          ? Icons.visibility_off_outlined
-                          : Icons.visibility_outlined
-                  )
-              ),
+                  icon: Icon(controller.isPasswordHidden.value
+                      ? Icons.visibility_off_outlined
+                      : Icons.visibility_outlined)),
               validator: AppValidations.password,
             );
-          }
+          }),
+          SizedBox(
+            height: 16.h,
           ),
-          SizedBox(height: 16.h,),
           const Text("Confirm Password: "),
           Obx(() {
             return AppTextFormFeild(
@@ -71,35 +74,40 @@ class SignupForm extends StatelessWidget{
               obscureText: controller.isConfirmHidden.value,
               prefixIcon: const Icon(Icons.confirmation_num_outlined),
               suffixIcon: IconButton(
-                  onPressed: (){
+                  onPressed: () {
                     //Later update
                     controller.isConfirmToggle();
                   },
-                  icon: Icon(
-                      controller.isConfirmHidden.value
-                          ? Icons.visibility_off_outlined
-                          : Icons.visibility_outlined
-                  )
-              ),
-              validator: (value){
-                return AppValidations.confirmPassword(value, passwordController.text);
+                  icon: Icon(controller.isConfirmHidden.value
+                      ? Icons.visibility_off_outlined
+                      : Icons.visibility_outlined)),
+              validator: (value) {
+                return AppValidations.confirmPassword(
+                    value, passwordController.text);
               },
             );
-          }
+          }),
+          SizedBox(
+            height: 16.h,
           ),
-          SizedBox(height: 16.h,),
-          AppButton(
-              title: "Signup",
-              onTap: (){
-                if(formKey.currentState!.validate()){
-                  Get.snackbar("Signup", "Signup Successful");
-                  Get.toNamed(AppRoutes.Login);
-                }
-              }
-          )
+          Obx(() {
+            return AppButton(
+                child: controller.isLoading.value
+                    ? Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : Text("Signup"),
+                onTap: () async {
+                  if (formKey.currentState!.validate()) {
+                    await controller.signup(
+                        email: emailController.text.trim(),
+                        password: passwordController.text.trim());
+                    Get.toNamed(AppRoutes.Login);
+                  }
+                });
+          })
         ],
       ),
     );
   }
-
 }

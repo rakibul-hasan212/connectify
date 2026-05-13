@@ -79,14 +79,21 @@ class LoginForm extends StatelessWidget{
               ],
             ),
             SizedBox(height: 20.h,),
-            AppButton(
-                title: "Login",
-                onTap: (){
-                  if(formKey.currentState!.validate()){
-                    Get.snackbar("Login", "Login Successful..");
-                    Get.toNamed(AppRoutes.Home);
-                  }
-                }
+            Obx(() {
+                return AppButton(
+                    child: controller.isLoading.value
+                        ? const Center(child: CircularProgressIndicator(),)
+                        : const Text("Login"),
+                    onTap: () async{
+                      if(formKey.currentState!.validate()){
+                        await controller.login(
+                            email: emailController.text.trim(),
+                            password: passwordController.text.trim()
+                        );
+                      }
+                    }
+                );
+              }
             ),
           ],
         )
