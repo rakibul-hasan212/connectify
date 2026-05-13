@@ -24,3 +24,11 @@ Completed:
 * Reusable validators
 * Form validation system
 
+✅ COMPLETE AUTH FLOW
+✅ Signup
+✅ Login
+✅ Firestore user save
+✅ Session persist
+✅ Splash auth check
+✅ Logout
+
