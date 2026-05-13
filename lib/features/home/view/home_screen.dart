@@ -1,4 +1,5 @@
 import 'package:connectify/core/routes/app_routes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,7 @@ import 'package:intl/intl.dart';
 class HomeScreen extends StatelessWidget{
 
   HomeScreen({super.key});
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   String time = DateFormat('EEE, hh:mm:ss a').format(DateTime.now());
   List activeFrnd = [
     "Sajel",
@@ -43,8 +45,8 @@ class HomeScreen extends StatelessWidget{
           Padding(
             padding: EdgeInsets.only(right: 20.w),
             child: IconButton(
-                onPressed: (){
-                  //Later update
+                onPressed: () async{
+                  await _auth.signOut();
                   Get.toNamed(AppRoutes.Login);
                 },
                 icon: const Icon(Icons.logout)
