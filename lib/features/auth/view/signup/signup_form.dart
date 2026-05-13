@@ -101,7 +101,9 @@ class SignupForm extends StatelessWidget {
                   if (formKey.currentState!.validate()) {
                     await controller.signup(
                         email: emailController.text.trim(),
-                        password: passwordController.text.trim());
+                        password: passwordController.text.trim(),
+                        username: usernameController.text.trim()
+                    );
                     Get.toNamed(AppRoutes.Login);
                   }
                 });

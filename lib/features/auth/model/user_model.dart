@@ -6,7 +6,7 @@ class UserModel{
   final String email;
   final String uid;
   final String bio;
-  final Image image;
+  final String image;
   UserModel({
     required this.email,
     required this.username,
@@ -21,7 +21,7 @@ class UserModel{
         username: map['username'] ?? ' ',
         uid: map['uid'] ?? ' ',
         bio: map['bio'] ?? '',
-        image:  map['image']
+        image:  map['image'] ?? ''
     );
   }
 

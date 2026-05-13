@@ -22,10 +22,10 @@ class AuthController extends GetxController {
     isConfirmHidden.value = !isConfirmHidden.value;
   }
   //signup method
-  Future<void> signup({required String email, required String password}) async {
+  Future<void> signup({required String email, required String password , required String username}) async {
     try {
       isLoading.value = true;
-      await _repository.signup(email: email, password: password);
+      await _repository.signup(email: email, password: password, username: username);
       Get.snackbar("Signup", "Account create Successfully");
       Get.toNamed(AppRoutes.Login);
     } catch (e) {
