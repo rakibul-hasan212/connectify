@@ -18,12 +18,13 @@ class ChatScreen extends StatefulWidget{
 class _ChatScreenState extends State<ChatScreen> {
   final ChatController chatController = Get.put(ChatController());
   late final UserModel receiver = Get.arguments;
+  final String currentUid = FirebaseAuth.instance.currentUser!.uid;
   late final String chatId;
 
   @override
   void initState() {
     super.initState();
-    final String currentUid = FirebaseAuth.instance.currentUser!.uid;
+
     chatId = ChatUtils.generateChatId(currentUid, receiver.uid,);
     chatController.listenMessages(chatId);
   }
@@ -51,8 +52,30 @@ class _ChatScreenState extends State<ChatScreen> {
                 itemCount: chatController.messages.length,
                 itemBuilder: (context, index) {
                   final message = chatController.messages[index];
-                  return ListTile(
-                    title: Text(message.message),
+                  return Align(
+                    alignment: message.senderId == currentUid
+                        ? Alignment.centerRight
+                        : Alignment.centerLeft,
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(
+                        vertical: 5,
+                        horizontal: 10,
+                      ),
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: message.senderId == currentUid
+                            ? Colors.blue
+                            : Colors.grey.shade300,
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Text(
+                        message.message,
+                        style: TextStyle(
+                          color: message.senderId == currentUid
+                              ? Colors.white : Colors.black,
+                        ),
+                      ),
+                    ),
                   );
                 },
               );
