@@ -1,5 +1,5 @@
 
-import 'package:connectify/core/Utils/app_scrollable.dart';
+import 'package:connectify/core/Utils/appScroll/app_scrollable.dart';
 import 'package:connectify/features/auth/view/signup/signup_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

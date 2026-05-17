@@ -1,5 +1,5 @@
 
-import 'package:connectify/core/Utils/validation.dart';
+import 'package:connectify/core/Utils/validation/validation.dart';
 import 'package:connectify/core/routes/app_routes.dart';
 import 'package:connectify/core/widgets/button/app_button.dart';
 import 'package:connectify/core/widgets/textFormFeild/app_text_form_feild.dart';
