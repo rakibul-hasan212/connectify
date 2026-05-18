@@ -15,6 +15,7 @@ Basically all features will be added which is most uses as Real time Chatting Ap
 
 ## ✅ CURRENT STATUS
 Completed:
+
 * Firebase setup
 * Auth UI
 * Reusable widgets
@@ -31,4 +32,18 @@ Completed:
 ✅ Session persist
 ✅ Splash auth check
 ✅ Logout
+
+---
+
+## OUTCOME
+
+PROPER MESSENGER FLOW Done(More to come very soon)
+
+* ✅ recent chats
+* ✅ all users
+* ✅ search users
+* ✅ realtime messaging
+* ✅ smart timestamps
+* ✅ auto scroll
+
 
