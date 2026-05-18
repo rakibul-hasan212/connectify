@@ -3,11 +3,11 @@ import 'package:connectify/features/chat/model/chat_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../model/message_model.dart';
 
 class ChatController extends GetxController {
   final TextEditingController messageController = TextEditingController();
+  final ScrollController scrollController = ScrollController();
   RxList<MessageModel> messages = <MessageModel>[].obs;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -15,7 +15,6 @@ class ChatController extends GetxController {
   Future<void> sendMessage(
       {required String chatId, required String receiverId}) async {
     try {
-
       String text = messageController.text.trim();
       if(text.isEmpty){
         return;
@@ -62,9 +61,7 @@ class ChatController extends GetxController {
   }
 
   void listenMessages(String chatId) {
-    _firestore
-        .collection('chats')
-        .doc(chatId)
+    _firestore.collection('chats').doc(chatId)
         .collection('messages')
         .orderBy(
           'createdAt',
@@ -73,13 +70,38 @@ class ChatController extends GetxController {
         .snapshots()
         .listen((snapshot) {
       List<MessageModel> temp = [];
-
       for (var doc in snapshot.docs) {
         temp.add(
           MessageModel.fromMap(doc.data()),
         );
       }
       messages.value = temp;
+      //call the scrolling method
+      Future.delayed(
+        const Duration(milliseconds: 100),
+            () {
+          scrollToBottom();
+        },
+      );
     });
   }
+
+  //ScrollToBottom
+  void scrollToBottom() {
+    if(scrollController.hasClients) {
+      scrollController.animateTo(
+        scrollController.position.maxScrollExtent,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeOut,
+      );
+    }
+  }
+
+  @override
+  void onClose() {
+    messageController.dispose();
+    scrollController.dispose();
+    super.onClose();
+  }
+
 }

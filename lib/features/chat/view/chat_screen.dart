@@ -50,6 +50,7 @@ class _ChatScreenState extends State<ChatScreen> {
           Expanded(
             child: Obx(() {
               return ListView.builder(
+                controller: chatController.scrollController,
                 itemCount: chatController.messages.length,
                 itemBuilder: (context, index) {
                   final message = chatController.messages[index];

@@ -72,7 +72,7 @@ class HomeScreen extends StatelessWidget{
                               );
                             },
                             leading: CircleAvatar(
-                              child: Text( user.username.isEmpty ? user.username[0] : "U"),
+                              child: Text( user.image.isEmpty ? user.username[0] : "U"),
                             ),
                             title: Text(user.username),
                             subtitle: Text(data.lastMessage),
