@@ -133,8 +133,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         chatId: chatId,
                         receiverId: receiver.uid
                     );
-                    Get.snackbar("Send", "Send Button action perform");
-                  }, icon: Icon(Icons.send_outlined))
+                  }, icon: const Icon(Icons.send_outlined))
             ],
           ),
         ),

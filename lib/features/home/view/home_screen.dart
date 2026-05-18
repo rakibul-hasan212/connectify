@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget{
             child: IconButton(
                 onPressed: () async{
                   await _auth.signOut();
-                  Get.toNamed(AppRoutes.Login);
+                  Get.offAllNamed(AppRoutes.Login);
                 },
                 icon: const Icon(Icons.logout)
             ),
