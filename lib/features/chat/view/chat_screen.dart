@@ -1,3 +1,4 @@
+import 'package:connectify/core/Utils/dateFormat/date_format_utils.dart';
 import 'package:connectify/features/auth/model/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -68,12 +69,30 @@ class _ChatScreenState extends State<ChatScreen> {
                             : Colors.grey.shade300,
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Text(
-                        message.message,
-                        style: TextStyle(
-                          color: message.senderId == currentUid
-                              ? Colors.white : Colors.black,
-                        ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            message.message,
+                            style: TextStyle(
+                              color: message.senderId == currentUid
+                                  ? Colors.white
+                                  : Colors.black,
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Text(
+                            DateFormatter.formatMessageTime(
+                              message.createdAt,
+                            ),
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: message.senderId == currentUid
+                                  ? Colors.white70
+                                  : Colors.black54,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   );

@@ -1,3 +1,4 @@
+import 'package:connectify/core/Utils/dateFormat/date_format_utils.dart';
 import 'package:connectify/core/routes/app_routes.dart';
 import 'package:connectify/features/home/controller/chat_list_controller.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -71,10 +72,14 @@ class HomeScreen extends StatelessWidget{
                               );
                             },
                             leading: CircleAvatar(
-                              child: Text(user.username[0],),
+                              child: Text( user.username.isEmpty ? user.username[0] : "U"),
                             ),
                             title: Text(user.username),
                             subtitle: Text(data.lastMessage),
+                            trailing: Text(
+                                DateFormatter.formatChatListTime(
+                              data.lastMessageTime
+                            )),
                           );
                         },
                       );
